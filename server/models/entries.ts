@@ -1,9 +1,9 @@
 import { Schema, model } from "mongoose";
 
-const ProductsSchema = new Schema({
+const EntriesSchema = new Schema({
   title:  String, // String is shorthand for {type: String}
-  author: String,
-  body:   String,
+  description: String,
+  date:   String,
 //   comments: [{ body: String, date: Date }],
 //   date: { type: Date, default: Date.now },
 //   hidden: Boolean,
@@ -13,8 +13,6 @@ const ProductsSchema = new Schema({
 //   }
 });
 
-const Products = model("Products", ProductsSchema);
+const Entries = model("Entries", EntriesSchema);
 
-export default Products;
-
-// module.exports = model( 'Products', ProductsSchema );
+export default Entries;

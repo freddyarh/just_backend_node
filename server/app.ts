@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(require('./routes/index'));
 
-mongoose.connect('mongodb://localhost:27017/node_test', (err: mongoose.CallbackError) => {
+mongoose.connect('mongodb://localhost:27017/diary_note', (err: mongoose.CallbackError) => {
     if (err) throw err;
 
     console.log('Base de datos online');

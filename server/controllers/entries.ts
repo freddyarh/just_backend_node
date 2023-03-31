@@ -1,44 +1,44 @@
 import { response, request } from "express";
-import Products from '../models/products';
+import Entries from '../models/entries';
 
 
-const setProducts = async(req = request, res = response) => {
+const setEntries = async(req = request, res = response) => {
 
     const body = req.body;
     console.log(body)
 
     const data = {
         title:  'the test',
-        author: 'Fredy',
-        body:   'There is not body'
+        description: 'Fredy',
+        date:   'There is not body'
     }
-    const product = new Products(body);
+    const entries = new Entries(body);
 
-    await product.save();
+    await entries.save();
 
     res.json({
         ok: true,
         msj: 'Access true',
-        product
+        entries
     });
 };
 const setProductImage = async(req = request, res = response) => {
 
 };
 
-const getProducts = async(req = request, res = response) => {
+const getEntries = async(req = request, res = response) => {
 
-    const product = await Products.find({})
+    const entries = await Entries.find({})
 
     res.json({
         ok: true,
         msj: 'Access true',
-        product
+        entries
     });
 };
 
 module.exports = {
-    getProducts,
-    setProducts,
+    getEntries,
+    setEntries,
     setProductImage
 }

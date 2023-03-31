@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const multer  = require('multer');
 const path = require('path');
-const { getProducts, setProducts, setProductImage } = require('../controllers/products');
+const { getEntries, setEntries, setProductImage } = require('../controllers/entries');
 
 const DIR = path.join(__dirname, "../../uploads");
 const storage = multer.diskStorage({
@@ -58,9 +58,9 @@ router.post('/:id/:miremos', (req, res, next) => {
         lastName
     });
 });
-router.post('/products', setProducts);
-router.post('/products/image/:id', upload.single('avatar'), setProductImage);
+router.post('/entries', setEntries);
+router.post('/entries/image/:id', upload.single('avatar'), setProductImage);
 
-router.get('/products', getProducts);
+router.get('/entries', getEntries);
 
 module.exports = router;
