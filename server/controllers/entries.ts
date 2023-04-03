@@ -6,12 +6,6 @@ const setEntries = async(req = request, res = response) => {
 
     const body = req.body;
     console.log(body)
-
-    const data = {
-        title:  'the test',
-        description: 'Fredy',
-        date:   'There is not body'
-    }
     const entries = new Entries(body);
 
     await entries.save();
