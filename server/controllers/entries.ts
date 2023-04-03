@@ -2,7 +2,7 @@ import { response, request } from "express";
 import Entries from '../models/entries';
 
 
-const setEntries = async(req = request, res = response) => {
+export const setEntries = async(req = request, res = response) => {
 
     const body = req.body;
     console.log(body)
@@ -16,11 +16,11 @@ const setEntries = async(req = request, res = response) => {
         entries
     });
 };
-const setProductImage = async(req = request, res = response) => {
+export const setProductImage = async(req = request, res = response) => {
 
 };
 
-const getEntries = async(req = request, res = response) => {
+export const getEntries = async(req = request, res = response) => {
 
     const entries = await Entries.find({})
 
@@ -30,9 +30,3 @@ const getEntries = async(req = request, res = response) => {
         entries
     });
 };
-
-module.exports = {
-    getEntries,
-    setEntries,
-    setProductImage
-}
