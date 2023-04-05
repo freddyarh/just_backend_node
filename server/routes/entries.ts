@@ -1,18 +1,17 @@
 import Router from "express";
-import multer from "multer";
-import path from "path";
+import { check } from "express-validator";
+
 import { getEntries, setEntries } from "../controllers/entries";
+import { validateFields } from "../middlewares/validate-fields";
 
 const router = Router();
 
 router.post('/:id/:miremos', (req, res, next) => {
 
     const { name, lastName } = req.body;
-    const { id } = req.params;
-    const { ids } = req.query;
-    console.log(req.body);
+    
     console.log(req.params);
-    console.log('si',req.query);
+    console.log('si', req.query);
 
     res.status(200).json({
         ok: true,
@@ -21,7 +20,10 @@ router.post('/:id/:miremos', (req, res, next) => {
         lastName
     });
 });
-router.post('/entries', setEntries);
+router.post('/entries', [
+    check('title', 'The title is obligatory').not().isEmpty(),
+    validateFields
+], setEntries);
 // router.post('/entries/image/:id', upload.single('avatar'), setProductImage);
 
 router.get('/entries', getEntries);
