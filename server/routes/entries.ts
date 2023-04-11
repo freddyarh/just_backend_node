@@ -22,6 +22,7 @@ router.post('/:id/:miremos', (req, res, next) => {
 });
 router.post('/entries', [
     check('title', 'The title is obligatory').not().isEmpty(),
+    check('description', 'The description is obligatory').not().isEmpty(),
     validateFields
 ], setEntries);
 // router.post('/entries/image/:id', upload.single('avatar'), setProductImage);
