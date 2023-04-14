@@ -1,10 +1,15 @@
 import Router from "express";
 import { check } from "express-validator";
+import multer from "multer";
+import path from "path";
+const upload = multer({ dest: '../../uploads/' });
 
 import { getEntries, setEntries } from "../controllers/entries";
 import { validateFields } from "../middlewares/validate-fields";
 
 const router = Router();
+
+const DIR = path.join(__dirname, "../../uploads");
 
 router.post('/:id/:miremos', (req, res, next) => {
 
@@ -20,12 +25,11 @@ router.post('/:id/:miremos', (req, res, next) => {
         lastName
     });
 });
-router.post('/entries', [
+router.post('/entries', upload.single('image'), [
     check('title', 'The title is obligatory').not().isEmpty(),
     check('description', 'The description is obligatory').not().isEmpty(),
     validateFields
 ], setEntries);
-// router.post('/entries/image/:id', upload.single('avatar'), setProductImage);
 
 router.get('/entries', getEntries);
 

@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const multer  = require('multer');
 const path = require('path');
-const { getEntries, setEntries, setProductImage } = require('../controllers/entries');
+const { getEntries, setEntries, setEntriesImage } = require('../controllers/entries');
 
 const DIR = path.join(__dirname, "../../uploads");
 const storage = multer.diskStorage({

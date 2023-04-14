@@ -5,9 +5,10 @@ import Entries from '../models/entries';
 export const setEntries = async(req = request, res = response) => {
 
     const body = req.body;
-    console.log(body)
+    const file = req.file;
+    console.log(body, file)                
     const entries = new Entries(body);
-
+                                         
     await entries.save();
 
     res.json({
@@ -16,7 +17,7 @@ export const setEntries = async(req = request, res = response) => {
         entries
     });
 };
-export const setProductImage = async(req = request, res = response) => {
+export const setEntriesImage = async(req = request, res = response) => {
 
 };
 
