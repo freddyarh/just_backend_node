@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
+import path from "path";
 
 import { dbConnection } from "./database/config";
 
@@ -31,7 +32,7 @@ class Server {
 
         this.app.use( express.json() );
 
-        this.app.use( express.static('public') );
+        this.app.use( express.static(path.join(__dirname, "public")) );
     }
     
     routes(){
