@@ -40,13 +40,15 @@ export const getEntries = async(req = request, res = response) => {
 };
 export const getImageFileEntries = async(req = request, res = response) => {
 
-    console.log(req.params)
-    return
+    const { id } = req.params;
 
-    const pathImagen = path.join( __dirname, '../../uploads/' );
+    const pathImagen = path.join( __dirname, `../../uploads/${ id }` );
         if ( fs.existsSync( pathImagen ) ) {
             return res.sendFile( pathImagen )
         }
+
+    const pathNoImagen = path.join( __dirname, '../../assets/no-image.jpg');
+    res.sendFile( pathNoImagen );
 
 
 };
