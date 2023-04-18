@@ -5,6 +5,9 @@
 /.pnp
 .pnp.js
 
+#Images from upload
+/uploads
+
 # testing
 /coverage
 
