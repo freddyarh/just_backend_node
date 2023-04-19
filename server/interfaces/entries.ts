@@ -1,6 +1,6 @@
 import { Date } from "mongoose";
 
-interface entries {
+export interface EntriesInterface {
     title: String;
     description: String;
     image: String;
