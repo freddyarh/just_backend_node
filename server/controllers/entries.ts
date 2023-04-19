@@ -1,6 +1,7 @@
 import { response, request } from "express";
 import fs from "fs";
 import path from "path";
+import { EntriesInterface } from '../interfaces/entries'
 
 import Entries from '../models/entries';
 
@@ -10,9 +11,9 @@ export const setEntries = async(req = request, res = response) => {
     const body = req.body;
     const file: Express.Multer.File | undefined = req.file;
 
-    const data = {
+    const data: EntriesInterface = {
         ...body,
-        image: file?.filename || ""
+        image: file?.filename
     }              
     const entries = new Entries(data);
                                          
@@ -20,7 +21,7 @@ export const setEntries = async(req = request, res = response) => {
 
     res.json({
         ok: true,
-        msj: 'Access true',
+        msj: 'Your entry has saved successfully',
         entries
     });
 };
