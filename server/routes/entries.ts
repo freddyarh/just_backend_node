@@ -8,6 +8,22 @@ import { validateFields } from "../middlewares/validate-fields";
 
 const router = Router();
 
+const checkFileType = function (file: any, cb: any) {
+    //Allowed file extensions
+    const fileTypes = /jpeg|jpg|png|gif|svg/;
+
+    //check extension names
+    const extName = fileTypes.test(path.extname(file.originalname).toLowerCase());
+
+    const mimeType = fileTypes.test(file.mimetype);
+
+    if (mimeType && extName) {
+    return cb(null, true);
+    } else {
+        cb("Error: You can Only Upload Images!!");
+    }
+};
+
 const DIR = path.join(__dirname, "../../uploads");
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -19,31 +35,14 @@ const storage = multer.diskStorage({
         const uniqueSuffix = filename + "-" + Date.now() + '-' + Math.round(Math.random() * 1E9) + "." + extension;
         cb(null, uniqueSuffix)
     }
+
 });
 
+
 const upload = multer({ storage: storage,
+    limits: { fileSize: 10000000 },
     fileFilter: (req, file, cb) => {
-        try {
-            if (
-              (file.mimetype == "image/png" ||
-              file.mimetype == "image/jpg" ||
-              file.mimetype == "image/jpeg" ||
-              file.mimetype == "application/pdf" ||
-              file.mimetype == "application/msword" ||
-              file.mimetype == "application/vnd.ms-word.document.macroEnabled.12" ||
-              file.mimetype == "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ||
-              file.mimetype == "application/vnd.openxmlformats-officedocument.wordprocessingml.template" ||
-              file.mimetype == "application/vnd.ms-powerpoint" ||
-              file.mimetype == "application/vnd.ms-excel") 
-            ) {
-              cb(null, true);
-            } else {
-              cb(null, false);
-              return cb(new Error("Only .png, .jpg and .jpeg format allowed or size not allowed!"));
-            }
-        } catch (error) {
-            console.log('El error es ',error);
-        }
+        checkFileType(file, cb);
     },
 });
 
