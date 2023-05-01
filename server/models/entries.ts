@@ -6,13 +6,6 @@ const EntriesSchema = new Schema({
   date:   String,
   image: String,
   user: String
-//   comments: [{ body: String, date: Date }],
-//   date: { type: Date, default: Date.now },
-//   hidden: Boolean,
-//   meta: {
-//     votes: Number,
-//     favs:  Number
-//   }
 });
 
 const Entries = model("Entries", EntriesSchema);
