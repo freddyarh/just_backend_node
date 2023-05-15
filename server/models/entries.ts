@@ -5,6 +5,7 @@ const EntriesSchema = new Schema({
   description: String,
   date:   String,
   image: String,
+  ranking : Number,
   user: String
 });
 
