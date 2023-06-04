@@ -8,7 +8,7 @@ import { validateFields } from "../middlewares/validate-fields";
 
 const router = Router();
 
-const checkFileType = function (file: any, cb: any) {
+const checkFileType = function (file: Express.Multer.File, cb: any) {
     //Allowed file extensions
     const fileTypes = /jpeg|jpg|png|gif|svg/;
 
