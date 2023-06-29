@@ -16,13 +16,6 @@ export const setEntries = async(req = request, res = response) => {
         image: file?.filename
     }
     
-    if( data === null ){
-
-        return res.status(404).json({
-            ok: false,
-            msj: 'You have not sent correctly your data'
-        })
-    }
     const entries = new Entries(data);
                                          
     await entries.save();
