@@ -36,3 +36,17 @@ jobs:
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
         echo "New version: $NEW_VERSION"
         echo "End login"
+
+    - name: Build Docker Image
+      env:
+        NEW_VERSION: ${{ steps.version.outputs.version }}
+      run: |
+        docker build -t freddyarh/journal-back:$NEW_VERSION .
+        docker build -t freddyarh/journal-back:latest .
+        
+    - name: Push Docker Image
+      env:
+        NEW_VERSION: ${{ steps.version.outputs.version }}
+      run: |
+        docker push freddyarh/journal-back:$NEW_VERSION
+        docker push freddyarh/journal-back:latest
