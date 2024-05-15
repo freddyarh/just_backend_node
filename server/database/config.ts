@@ -5,8 +5,9 @@ dotenv.config();
 export const dbConnection = async() => {
 
     try {
+        await mongoose.set("strictQuery", false)
+                      .connect( process.env.MONGODB || '')
 
-        await mongoose.connect( 'mongodb://localhost:27017/diary_note');
         console.log('Database online');
     
 
