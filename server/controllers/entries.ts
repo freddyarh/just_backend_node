@@ -26,9 +26,6 @@ export const setEntries = async(req = request, res = response) => {
         entries
     });
 };
-export const setEntriesImage = async(req = request, res = response) => {
-
-};
 
 export const getEntries = async(req = request, res = response) => {
 
